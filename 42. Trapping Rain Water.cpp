@@ -24,3 +24,38 @@ public:
 Time complexity = O(2n)
 Space complexity = O(n) : only for suffix array
 */
+
+
+class Solution {
+public:
+    int trap(vector<int>& arr) {
+        int lMax = 0;
+        int rMax = 0;
+        int total = 0;
+        int l = 0;
+        int r = arr.size() - 1;
+        while (l < r) {
+            if (arr[l] < arr[r]) {
+                if (lMax > arr[l]) {
+                    total += lMax - arr[l];
+                } else {
+                    lMax = arr[l];
+                }
+                l++;
+            } else {
+                if (rMax > arr[r]) {
+                    total += rMax - arr[r];
+                } else {
+                    rMax = arr[r];
+                }
+                r--;
+            }
+        }
+        return total;
+    }
+};
+
+/*
+Time complexity = O(n)
+Space complexity = O(1)
+*/
